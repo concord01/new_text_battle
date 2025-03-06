@@ -66,7 +66,7 @@ def battle_start(protag, villain):
                 protag.kick()
                 v_health = v_health - protag.player_damage
             elif(player_choice == "flamethrower"):
-                print("Player flames for" +str(protag.player_damage)+"!")
+                print("Player flames for " +str(protag.player_damage)+"!")
                 protag.flamethrower()
                 v_health = v_health- protag.player_damage
                 print("You're out of flames!")
@@ -78,9 +78,13 @@ def battle_start(protag, villain):
         else:
             print(villain.enemy_name+"'s turn!")
             villain.attack
-            
+            if(villain.enemy_damage == 2):
+                print(villain.enemy_name + " punches for 2!")
+            elif(villain.enemy_damage == 4):
+                print(villain.enemy_name + " slashes for 4!")
             p_health = p_health - villain.enemy_damage
             turn = 0
+        
 
             
 
