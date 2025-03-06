@@ -2,10 +2,9 @@ import random
 
 
 class player:
-    def __init__(self, player_health, player_damage,player_paralyzed, flame_charge):
+    def __init__(self, player_health, player_damage, flame_charge):
         self.player_health = player_health
         self.player_damage = player_damage
-        self.player_paralyzed = player_paralyzed
         self.flame_charge = flame_charge
     def punch(self):
         self.player_damage = random.choice([2,3])
@@ -16,12 +15,13 @@ class player:
     def health_check(self):
         return(self.player_health)
     def flamethrower(self):
-        if self.flame_charge:
-            self.player_damage = 5
-            self.flame_charge = False
+        if self.flame_charge == True:
+            self.player_damage = 6
             return(self.player_damage)
         else:
             self.player_damage = 0
+            print("You're out of flames!")
+            return(self.player_damage)
 
 class enemy:
     def __init__(self, enemy_health, enemy_damage, enemy_name):
@@ -31,17 +31,17 @@ class enemy:
     def attack(self):
         attack_choice = random.choice([0,1])
         if attack_choice == 0:
-            print("You are punched for " + str(self.enemy_damage) + " damage!")
-            return(enemy_damage)
+            print("You are punched for 3 damage!")
+            return(self.enemy_damage)
         elif attack_choice == 1:
-            print("You are slashed at for " + str(self.enemy_damage+2) + " damage!")    
-            return(self.enemy_damage+2)
+            print("You are slashed at for 6 damage!")    
+            return(self.enemy_damage*2)
     def enemy_health_check(self):
         return(self.enemy_health)
 
 
-guy = player(10, 0, False, True)
-super_skeleton = enemy(10,2,"super skeleton")
+guy = player(10, 0, True)
+super_skeleton = enemy(10,3,"super skeleton")
 
 
 def battle_start(protag, villain):
@@ -58,33 +58,29 @@ def battle_start(protag, villain):
             player_choice = player_choice.lower()
             print(player_choice)
             if(player_choice == "punch"):
-                protag.punch()
                 print("Player punches for "+str(protag.player_damage)+"!")
-                v_health = v_health - protag.player_damage
+                v_health = v_health - protag.punch()
             elif(player_choice == "kick"):
                 print("Player kicks for "+str(protag.player_damage)+"!")
                 protag.kick()
-                v_health = v_health - protag.player_damage
+                v_health = v_health - protag.kick()
             elif(player_choice == "flamethrower"):
                 print("Player flames for " +str(protag.player_damage)+"!")
                 protag.flamethrower()
-                v_health = v_health- protag.player_damage
-                print("You're out of flames!")
-                protag.flame_charge == False
+                v_health = v_health- protag.flamethrower()
+                protag.flame_charge = False
             else:
                 print("Ok man, guess you skip")
             print("End player turn!")
             turn = 1
         else:
             print(villain.enemy_name+"'s turn!")
-            villain.attack
-            if(villain.enemy_damage == 2):
-                print(villain.enemy_name + " punches for 2!")
-            elif(villain.enemy_damage == 4):
-                print(villain.enemy_name + " slashes for 4!")
-            p_health = p_health - villain.enemy_damage
+            p_health = p_health - villain.attack()
             turn = 0
-        
+    if p_health > 0:
+        print("You beat the "+villain.enemy_name+"! You gain XX xp!")
+    elif p_health <= 0:
+        print("You died!")
 
             
 
