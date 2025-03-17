@@ -31,17 +31,19 @@ class enemy:
     def attack(self):
         attack_choice = random.choice([0,1])
         if attack_choice == 0:
-            print("You are punched for 3 damage!")
+            print("You are punched for 2 damage!")
             return(self.enemy_damage)
         elif attack_choice == 1:
-            print("You are slashed at for 6 damage!")    
-            return(self.enemy_damage*2)
+            print("You are slashed at for 4 damage!")    
+            return(self.enemy_damage * 2)
     def enemy_health_check(self):
         return(self.enemy_health)
 
 
 guy = player(10, 0, True)
-super_skeleton = enemy(10,3,"super skeleton")
+bad_guy_bank = ["super skeleton", "really big goblin", "comically large rat"]
+bad_guy_selection = random.choice(bad_guy_bank)
+bad_guy= enemy(10,2, bad_guy_selection)
 
 
 def battle_start(protag, villain):
@@ -88,4 +90,4 @@ def battle_start(protag, villain):
             
 
 
-battle_start(guy, super_skeleton)
+battle_start(guy, bad_guy)
