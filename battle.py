@@ -1,4 +1,5 @@
 import random
+#This is an import of the random function which is written by 
 
 
 class player:
@@ -58,7 +59,6 @@ def battle_start(protag, villain):
             print("Player's turn!")
             player_choice = input("Player can choose to: \n Punch \n Kick \n Flamethrower \n")
             player_choice = player_choice.lower()
-            print(player_choice)
             if(player_choice == "punch"):
                 print("Player punches for "+str(protag.player_damage)+"!")
                 v_health = v_health - protag.punch()
