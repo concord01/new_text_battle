@@ -1,5 +1,4 @@
 import random
-#This is an import of the random function which is written by 
 
 
 class player:
