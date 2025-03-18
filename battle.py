@@ -62,14 +62,13 @@ def battle_start(protag, villain):
             player_choice = input("Player can choose to: \n Punch \n Kick \n Flamethrower \n")
             player_choice = player_choice.lower()
             if(player_choice == "punch"):
-                print("Player punches for "+str(protag.player_damage)+"!")
                 v_health = v_health - protag.punch()
+                print("Player punches for "+str(protag.player_damage)+"!")
             elif(player_choice == "kick"):
-                print("Player kicks for "+str(protag.player_damage)+"!")
                 protag.kick()
+                print("Player kicks for "+str(protag.player_damage)+"!")
                 v_health = v_health - protag.kick()
             elif(player_choice == "flamethrower"):
-                
                 protag.flamethrower()
                 print("Player flames for "+str(protag.player_damage)+"!")
                 v_health = v_health- protag.flamethrower()
