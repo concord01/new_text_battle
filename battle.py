@@ -69,8 +69,9 @@ def battle_start(protag, villain):
                 protag.kick()
                 v_health = v_health - protag.kick()
             elif(player_choice == "flamethrower"):
-                print("Player flames for 6!")
+                
                 protag.flamethrower()
+                print("Player flames for "+str(protag.player_damage)+"!")
                 v_health = v_health- protag.flamethrower()
                 protag.flame_charge = False
             else:
