@@ -45,12 +45,15 @@ bad_guy_bank = ["super skeleton", "really big goblin", "comically large rat"]
 bad_guy_selection = random.choice(bad_guy_bank)
 bad_guy= enemy(10,2, bad_guy_selection)
 
+def mandatory_helper_function(lower,higher):
+    random_selection = random.choice([lower,higher])
+    return random_selection
 
 def battle_start(protag, villain):
     print("Battle Begin!")
     p_health = protag.player_health
     v_health = villain.enemy_health
-    turn = random.choice([0,1])
+    turn = mandatory_helper_function(0,1)
     while p_health > 0 and v_health > 0:
         print("You are at " + str(p_health) + " health!")
         print("The "+ villain.enemy_name +" is at " + str(v_health) + " health!")
